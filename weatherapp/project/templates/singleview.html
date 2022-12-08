@@ -1,0 +1,24 @@
+<html style='text-align:center'> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/holiday.css@0.9.8">
+{% extends 'base.html' %}
+{% block single %}
+<h2>{{ location.capitalize }}</h2>
+<h3>
+    <table>
+        <tr>
+            <td>tempature: {{ show_info_temp }}°C</td>
+            <td>minimum tempature: {{ show_info_mintemp }}°C</td>
+            <td>maximum tempature: {{ show_info_maxtemp }}°C</td>
+            <td>feels like: {{ show_info_feel }}°C</td>
+            <td>humidity: {{ show_info_humid }}%</td>
+            <td>description: {{ show_info_description }}</td>
+        </tr>
+    </table>
+</h3>
+{% if user.is_authenticated %}
+    <form method='POST'><input type="submit" value='Add location to favorites'>
+        {% csrf_token %}   
+        {% include 'messages.html' %}
+    </form>
+{% endif %}
+{% endblock %}
+</html>

@@ -1,0 +1,35 @@
+
+<html style='text-align:center'> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/holiday.css@0.9.8">
+<head>
+  <title>{% block title %}Weather app home{% endblock %}</title>
+  {% if user.is_authenticated %}
+  Hello {{ user.username.capitalize }}!
+{% else %}
+  <p>You are not logged in sign up or log in to use more of our features!</p>
+{% endif %}
+</head>
+<body>
+{% block menu %}
+    <nav>
+        <ul>
+        <li><a href="/project/weather">check weather</a>
+        {% if user.is_superuser %}
+        <li><a href="/admin">admin page</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <li><a href="/project/favorites">favorites</a>
+            <li><a href="/accounts/logout">sign out</a>
+        {% else %}
+        <li><a href="/project/create">sign up</a>
+        <li><a href="/accounts/login">login</a>
+        {% endif %}
+        </ul>
+</nav>
+{% endblock %}
+{% block login %} {% endblock %}
+{% block form %} {% endblock %}
+{% block weather %} {% endblock %}
+{% block favorites %} {% endblock %}
+{% block single %} {% endblock %}
+</body>
+</html>
